@@ -10,7 +10,7 @@ const App = ()=>{
           </div>
         </div>
         <div className='right-nav'>
-          <div className='me'>Me</div>
+          <div className="register-login">Register or Login</div>
         </div>
       </nav>
       <main>

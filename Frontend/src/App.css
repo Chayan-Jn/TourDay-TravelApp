@@ -30,8 +30,8 @@ nav{
   top:0;
   left:0;
   width: 100%;
-  height: min(5vh,100px);
-  background-color: black;
+  height: min(6vh,120px);
+  background:linear-gradient(to right,rgb(1, 91, 91),white,rgb(1, 91, 91));
   color: white;
   z-index: 1;
   display: flex;
@@ -41,8 +41,17 @@ nav{
   font-size: large;
 }
 
+.right-nav{
+  font-size:1.5rem;
+  background-color: rgb(253, 255, 255);
+  border-radius: 15px;
+  padding:4px;
+  color:black;
+  margin-right:1%;
+}
 .project-name{
   padding-left: 10px;
+  font-size:2rem;
 }
 
 .me{
