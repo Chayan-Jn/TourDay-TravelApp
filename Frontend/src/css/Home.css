@@ -1,0 +1,137 @@
+*{
+    padding: 0px;
+    margin:0px;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  .page{
+    height: 100vh;
+    width:100vw;
+    background-color: peachpuff;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  main{
+    flex:8;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  nav{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: min(6vh,120px);
+    background:linear-gradient(to right,rgb(1, 91, 91),white,rgb(1, 91, 91));
+    color: white;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: large;
+  }
+  
+  .home-right-nav{
+    
+  }
+  
+  .home-right-nav:hover{
+
+  }
+  
+  .project-name{
+    padding-left: 10px;
+    font-size:2rem;
+  }
+  
+  .me{
+    padding-right: 10px;
+  }
+  
+  main >*{
+    z-index: 0;
+    position: relative;
+  }
+  
+  .hero-text{
+    position: absolute;
+    font-size: min(7vw,80px);
+    color: white;
+    font-weight: bold;
+    top:10vh;
+    text-shadow: 1px 1px 5px black;
+    z-index:1;
+  }
+  .hero-video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  
+  .page2{
+    height: 100vh;
+    width: 100vw;
+    background-image: url("https://images.pexels.com/photos/33532186/pexels-photo-33532186.jpeg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    gap:1vw;
+    position: relative;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  .page2 > div{
+    height: 60%;
+    width: 22%;
+    background-color: rgb(106, 154, 216);
+    border-radius: 5%;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .page2 > div:hover{
+    transform:scale(1.05) rotate3d(1, 1, 1, 4deg);
+    box-shadow: 10px 10px 200px rgb(18, 192, 208);
+  }
+  
+  .page2 > div:nth-child(1){
+    background-image:url("https://images.pexels.com/photos/1007431/pexels-photo-1007431.jpeg") ;
+    background-size: cover;
+    background-position: center;
+      background-repeat: no-repeat;
+  }
+  .page2 > div:nth-child(2) {
+    background-image: url("https://images.pexels.com/photos/3193063/pexels-photo-3193063.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .page2 > div:nth-child(3) {
+    background-image: url("https://images.pexels.com/photos/31783334/pexels-photo-31783334.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .page2 > div:nth-child(4) {
+    background-image: url("https://images.pexels.com/photos/18567617/pexels-photo-18567617.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  

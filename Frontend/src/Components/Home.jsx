@@ -1,25 +1,8 @@
 
-import './css/App.css'
+import '../css/Home.css'
 import { useNavigate } from 'react-router-dom';
 const App = ()=>{
-  const navigate = useNavigate();
-  const handleRegisterLogin = async ()=>{
-    console.log('sending req to login check')
-    const loggedIn = await fetch('http://localhost:3000/login-check',{
-      method:'GET',
-      headers:{
-        'Content-Type':'application/json'
-      },
-      credentials:'include'
-    });
-    if (loggedIn.ok) {
-      const data = await loggedIn.json(); 
-      console.log("User already logged in", data.user);
-      navigate("/home");
-    } else {
-      navigate("/login");
-    }
-  }
+
   return(
     <>
     <div className="page">
@@ -29,8 +12,7 @@ const App = ()=>{
             TourDay
           </div>
         </div>
-        <div className='right-nav'>
-          <div className="register-login" onClick={handleRegisterLogin}>Register or Login</div>
+        <div className='home-right-nav'>
         </div>
       </nav>
       <main>

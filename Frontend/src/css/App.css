@@ -43,12 +43,22 @@ nav{
 
 .right-nav{
   font-size:1.5rem;
-  background-color: rgb(253, 255, 255);
+  background:linear-gradient(to right,);
+  box-shadow:1px 1px 1px black ;
+  border: 1px white solid;
   border-radius: 15px;
-  padding:4px;
-  color:black;
+  padding:6px;
+  color:white;
   margin-right:1%;
+  font-weight: bold;
 }
+
+.right-nav:hover{
+  background-color: rgb(4, 143, 143);
+  color:white;
+  cursor:pointer;
+}
+
 .project-name{
   padding-left: 10px;
   font-size:2rem;
