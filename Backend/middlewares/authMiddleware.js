@@ -3,7 +3,7 @@ require('dotenv').config()
 async function authMiddleware(req,res,next) {
     try{
         console.log('🔍 Auth middleware hit!'); this
-        console.log('Cookies:', req.cookies); 
+        console.log('Cookies: ', req.cookies); 
         const token = req.cookies?.token;
         if(!token){
             return res.status(400).json({
@@ -11,7 +11,7 @@ async function authMiddleware(req,res,next) {
                 message:"No token found. Please log in again"
             })
         }
-        const decoded = jwt.verify(token, process.env.MONGODB_SECRET);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.userInfo = decoded;
         next()
     }

@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors')
 
 const authRoutes = require('./routes/authRoutes');
+const adminRoutes = require('./routes/adminRoutes')
 const loginCheckRoute = require('./routes/loginCheckRoute')
 
 const app = express()
@@ -16,6 +17,7 @@ app.use(cookieParser());
 
 
 app.use(authRoutes);
+app.use(adminRoutes);
 app.use(loginCheckRoute);
 
 app.get('/test', (req, res) => {

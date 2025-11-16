@@ -5,7 +5,7 @@ require('dotenv').config();
 
 async function register(req, res) {
     console.log('register runs')
-    const { username, password } = req.body;
+    const { username, password,role } = req.body;
     
     if (!username || !password) {
         return res.status(400).json({
@@ -28,7 +28,8 @@ async function register(req, res) {
 
         const user = await User.create({
             username,
-            password: hashedPassword
+            password: hashedPassword,
+            role:role || 'user'
         });
 
         res.status(201).json({
@@ -76,12 +77,12 @@ async function login(req,res) {
                 message:"Invalid Credentials"
             })
         }
-
-        const token = await jwt.sign(
-            { username:username },
-            process.env.MONGODB_SECRET,
-            {   expiresIn:"1h"}
-        )
+        const token = jwt.sign(
+            { id: existingUser._id, username: existingUser.username, role: existingUser.role },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+          )
+          
 
         // in localhost secure should be false, because it uses http not https
         const isProd = process.env.NODE_ENV === 'production';

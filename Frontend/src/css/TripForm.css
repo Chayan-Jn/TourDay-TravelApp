@@ -1,0 +1,167 @@
+.trip-form,
+.trip-form * {
+  text-shadow: none !important;
+}
+
+.trip-form {
+  max-width: 700px;
+  margin: 40px auto;
+  background: #f9f9f9;
+  padding: 25px 30px;
+  border-radius: 10px;
+  border: 1px solid #d9d9d9;
+  font-family: "Inter", Arial, sans-serif;
+  color: #222;
+}
+
+.trip-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #222;
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+.trip-form h3 {
+  margin-top: 25px;
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.trip-form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+.trip-form input,
+.trip-form textarea {
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  background: #fff;
+  color: #222;
+  outline: none;
+}
+
+.trip-form input:focus,
+.trip-form textarea:focus {
+  border-color: #007bff;
+}
+
+.trip-form textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* List section (Included / Excluded / Images) */
+.list-section {
+  margin-top: 20px;
+  background: #f0f0f0;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #d0d0d0;
+}
+
+.list-section label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+}
+
+.list-input {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.list-input input {
+  flex: 1;
+  background: #fff;
+}
+
+.list-input button {
+  padding: 8px 16px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-weight: 500;
+}
+
+.list-input button:hover {
+  background: #005fc1;
+}
+
+.list-section ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.list-section li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+.list-section li a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.list-section li button {
+  background: none;
+  border: none;
+  color: #e53935;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 6px;
+}
+
+/* Submit button */
+.trip-form button[type='submit'] {
+  margin-top: 25px;
+  width: 100%;
+  background: #2e7d32;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.trip-form button[type='submit']:hover {
+  background: #256628;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .trip-form {
+    padding: 20px;
+  }
+
+  .list-input {
+    flex-direction: column;
+  }
+
+  .list-input button {
+    width: 100%;
+  }
+}

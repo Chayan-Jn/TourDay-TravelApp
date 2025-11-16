@@ -5,6 +5,7 @@ import App from './App.jsx'
 import Register from './Components/Register.jsx'
 import Login from './Components/Login.jsx'
 import Home from './Components/Home.jsx'
+import TripForm from './Components/TripForm.jsx'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path:"/login",
     element:<Login/>
+  },
+  {
+    path:"/admin/trip-form",
+    element:<TripForm/>
   }
 ])
 
