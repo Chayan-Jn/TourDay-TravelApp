@@ -15,32 +15,28 @@ export default function TripForm() {
     guide: { name: '', contact: '' },
     included: [],
     excluded: [],
-    images: []
+    images: [],
+    itinerary: []
   })
 
   const [includedInput, setIncludedInput] = useState('')
   const [excludedInput, setExcludedInput] = useState('')
   const [imageInput, setImageInput] = useState('')
-  const [isAdmin, setIsAdmin] = useState(null) // null = loading, false = not admin
+  const [isAdmin, setIsAdmin] = useState(null)
   const [error, setError] = useState('')
+  const [activeDay, setActiveDay] = useState(1)
 
-  // ✅ check admin access on mount
   useEffect(() => {
     const checkAdmin = async () => {
-      console.log('Checking admin access ')
       try {
         const res = await fetch('http://localhost:3000/admin/admin-check', { credentials: 'include' })
-        console.log('res is ',res)
         const data = await res.json()
-        console.log('Inside Trip Form, data is ',data)
-        if (res.ok && data.success) {
-          setIsAdmin(true)
-        } else {
+        if (res.ok && data.success) setIsAdmin(true)
+        else {
           setIsAdmin(false)
           setError(data.message || 'Access denied')
         }
-      } catch (err) {
-        console.log('trip err is ',err)
+      } catch {
         setIsAdmin(false)
         setError('Could not verify admin access')
       }
@@ -65,29 +61,61 @@ export default function TripForm() {
   }
 
   const removeFromList = (field, index) => {
+    setTrip(prev => ({ ...prev, [field]: prev[field].filter((_, i) => i !== index) }))
+  }
+
+  const addDay = () => {
     setTrip(prev => ({
       ...prev,
-      [field]: prev[field].filter((elem, i) => i !== index)
+      itinerary: [...prev.itinerary, { day: prev.itinerary.length + 1, activities: [] }]
+    }))
+    setActiveDay(trip.itinerary.length + 1)
+  }
+
+  const handleActivityChange = (day, value) => {
+    setTrip(prev => ({
+      ...prev,
+      itinerary: prev.itinerary.map(d =>
+        d.day === day ? { ...d, activities: value.split('\n').filter(line => line.trim() !== '') } : d
+      )
     }))
   }
 
   const handleSubmit = async e => {
     e.preventDefault()
-    const res = await fetch('/api/trips', {
+    const res = await fetch('http://localhost:3000/add-trips', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      credentials: 'include', // ✅ send cookie for auth
+      credentials: 'include',
       body: JSON.stringify(trip)
     })
     const data = await res.json()
     alert(res.ok ? 'Trip created successfully!' : data.error)
+    setTrip({
+      title: '',
+      description: '',
+      destination: '',
+      startDate: '',
+      endDate: '',
+      pricePerPerson: '',
+      maxGroupSize: '',
+      availableSeats: '',
+      category: '',
+      guide: { name: '', contact: '' },
+      included: [],
+      excluded: [],
+      images: [],
+      itinerary: []
+    })
+    setIncludedInput('')
+    setExcludedInput('')
+    setImageInput('')
+    setActiveDay(1)
   }
 
-  // 🔸 show loading or denied access
   if (isAdmin === null) return <p>Checking admin access...</p>
   if (isAdmin === false) return <p style={{ color: 'red' }}>{error}</p>
 
-  // ✅ if admin confirmed, show form
   return (
     <form onSubmit={handleSubmit} className="trip-form">
       <h2>Create a New Trip</h2>
@@ -119,7 +147,6 @@ export default function TripForm() {
       <label>Category</label>
       <input name="category" value={trip.category} onChange={handleChange} placeholder="Adventure, Beach..." />
 
-      {/* Included */}
       <div className="list-section">
         <label>Included</label>
         <div className="list-input">
@@ -136,7 +163,6 @@ export default function TripForm() {
         </ul>
       </div>
 
-      {/* Excluded */}
       <div className="list-section">
         <label>Excluded</label>
         <div className="list-input">
@@ -153,7 +179,6 @@ export default function TripForm() {
         </ul>
       </div>
 
-      {/* Images */}
       <div className="list-section">
         <label>Images</label>
         <div className="list-input">
@@ -170,10 +195,36 @@ export default function TripForm() {
         </ul>
       </div>
 
-      {/* Guide */}
       <h3>Guide Details</h3>
       <input name="name" value={trip.guide.name} onChange={handleGuideChange} placeholder="Guide Name" />
       <input name="contact" value={trip.guide.contact} onChange={handleGuideChange} placeholder="Guide Contact" />
+
+      <div className="list-section">
+        <h3>Itinerary</h3>
+        <div className="itinerary-tabs">
+          {trip.itinerary.map(dayObj => (
+            <button
+              type="button"
+              key={dayObj.day}
+              className={activeDay === dayObj.day ? 'active-tab' : ''}
+              onClick={() => setActiveDay(dayObj.day)}
+            >
+              Day {dayObj.day}
+            </button>
+          ))}
+          <button type="button" onClick={addDay}>+ Add Day</button>
+        </div>
+        {trip.itinerary.map(dayObj =>
+          activeDay === dayObj.day && (
+            <textarea
+              key={dayObj.day}
+              value={dayObj.activities.join('\n')}
+              onChange={e => handleActivityChange(dayObj.day, e.target.value)}
+              placeholder="Enter activities, one per line"
+            />
+          )
+        )}
+      </div>
 
       <button type="submit">Create Trip</button>
     </form>

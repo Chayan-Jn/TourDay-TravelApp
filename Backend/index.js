@@ -6,6 +6,7 @@ const cors = require('cors')
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes')
 const loginCheckRoute = require('./routes/loginCheckRoute')
+const tripRoutes = require('./routes/tripRoutes');
 
 const app = express()
 app.use(cors({
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use(authRoutes);
 app.use(adminRoutes);
 app.use(loginCheckRoute);
+app.use(tripRoutes);
 
 app.get('/test', (req, res) => {
     console.log('Test endpoint hit');
