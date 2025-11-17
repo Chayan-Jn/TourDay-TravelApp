@@ -10,7 +10,7 @@ const App = ()=>{
     const handleLogin = async (e) => {
         e.preventDefault();
         try{
-            const res = await fetch('http://localhost:3000/register',{
+            const res = await fetch('https://rkl6rjdf-3000.inc1.devtunnels.ms/register',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'

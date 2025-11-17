@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config()
 async function authMiddleware(req,res,next) {
     try{
-        console.log('🔍 Auth middleware hit!'); this
-        console.log('Cookies: ', req.cookies); 
+        console.log(' Auth middleware hit...'); this
+        console.log('Cookies ', req.cookies); 
         const token = req.cookies?.token;
         if(!token){
             return res.status(400).json({

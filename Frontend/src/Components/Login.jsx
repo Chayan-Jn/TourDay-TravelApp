@@ -15,7 +15,7 @@ const App = () => {
         e.preventDefault();
         try {
             console.log('trying to fetch inside login')
-            const res = await fetch('http://localhost:3000/login', {
+            const res = await fetch('https://rkl6rjdf-3000.inc1.devtunnels.ms/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

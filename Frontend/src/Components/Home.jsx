@@ -16,7 +16,7 @@ const App = ()=>{
         </div>
       </nav>
       <main>
-        <div className='hero-text'>TourDay: We plan, You play</div>
+        <div className='hero-text'>TourDe: We plan, You play</div>
         <video className='hero-video' src="https://cdn.pixabay.com/video/2020/07/25/45569-443244046_large.mp4" autoPlay muted loop playsInline></video>
       </main>
     </div>

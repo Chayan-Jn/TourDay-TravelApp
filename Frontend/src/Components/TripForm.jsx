@@ -29,7 +29,7 @@ export default function TripForm() {
   useEffect(() => {
     const checkAdmin = async () => {
       try {
-        const res = await fetch('http://localhost:3000/admin/admin-check', { credentials: 'include' })
+        const res = await fetch('https://rkl6rjdf-3000.inc1.devtunnels.ms/admin/admin-check', { credentials: 'include' })
         const data = await res.json()
         if (res.ok && data.success) setIsAdmin(true)
         else {
@@ -83,14 +83,14 @@ export default function TripForm() {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    const res = await fetch('http://localhost:3000/add-trips', {
+    const res = await fetch('https://rkl6rjdf-3000.inc1.devtunnels.ms/add-trips', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
       body: JSON.stringify(trip)
     })
     const data = await res.json()
-    alert(res.ok ? 'Trip created successfully!' : data.error)
+    alert(res.ok ? 'Trip created successfully ' : data.error)
     setTrip({
       title: '',
       description: '',

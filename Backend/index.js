@@ -9,9 +9,21 @@ const loginCheckRoute = require('./routes/loginCheckRoute')
 const tripRoutes = require('./routes/tripRoutes');
 
 const app = express()
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://rkl6rjdf-5173.inc1.devtunnels.ms'
+]
+
 app.use(cors({
-    origin: 'http://localhost:5173', 
-    credentials: true   
+    origin: function (origin, callback) {
+        if (!origin) return callback(null, true) // allow non-browser requests like Postman
+        if (allowedOrigins.includes(origin)) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    },
+    credentials: true
 }))
 app.use(express.json())
 app.use(cookieParser());
@@ -31,6 +43,6 @@ app.get('/test', (req, res) => {
 console.log("hi")
 connectToDb()
 
-app.listen(3000,()=>{
+app.listen(3000, () => {
     console.log("Server listening on port 3k")
 })
