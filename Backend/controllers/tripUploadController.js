@@ -16,7 +16,8 @@ async function addTrip(req, res) {
       excluded,
       images,
       guide,
-      itinerary
+      itinerary,
+      hotels 
     } = req.body
 
     if (!title || !description || !destination) {
@@ -40,7 +41,8 @@ async function addTrip(req, res) {
       excluded,
       images,
       guide,
-      itinerary
+      itinerary,
+      hotels 
     })
 
     await trip.save()

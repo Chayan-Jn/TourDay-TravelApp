@@ -1,0 +1,42 @@
+.trip-details {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+  }
+  
+  .trip-details h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .trip-details h3 {
+    margin-top: 20px;
+    color: #333;
+  }
+  
+  .trip-details p, .trip-details li {
+    color: #555;
+  }
+  
+  .trip-details ul {
+    list-style: disc;
+    margin-left: 20px;
+  }
+  
+  .trip-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  
+  .trip-images img {
+    width: 180px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  

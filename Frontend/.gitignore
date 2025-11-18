@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+https://rkl6rjdf-3000.inc1.devtunnels.ms/
 
 # Editor directories and files
 .vscode/*

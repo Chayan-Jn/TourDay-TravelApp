@@ -238,3 +238,184 @@
 .add-day-btn:hover {
   background: #256628;
 }
+
+
+/* General list section wrapper */
+.list-section {
+  margin: 20px 0;
+}
+
+.list-section label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+/* Generic list input row (for included, excluded, images) */
+.list-input {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.list-input input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.list-input button {
+  background: #0077ff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.list-input button:hover {
+  background: #005fcc;
+}
+
+/* List container */
+.list-section ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 6px;
+}
+
+.list-section li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 6px 10px;
+  margin-bottom: 6px;
+  word-break: break-word;
+}
+
+.list-section li a {
+  color: #0077ff;
+  text-decoration: none;
+}
+
+.list-section li a:hover {
+  text-decoration: underline;
+}
+
+/* Remove button for list items */
+.list-section li button {
+  background: #ff4d4d;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  text-align: center;
+  line-height: 22px;
+  transition: background 0.2s ease;
+}
+
+.list-section li button:hover {
+  background: #d93636;
+}
+
+/* Hotels section (special layout for name + link input) */
+.hotel-inputs {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.hotel-inputs input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.hotel-inputs button {
+  background: #0077ff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.hotel-inputs button:hover {
+  background: #005fcc;
+}
+
+/* Itinerary tabs */
+.itinerary-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.itinerary-tabs button {
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.itinerary-tabs button:hover {
+  background: #ddd;
+}
+
+.itinerary-tabs .active-tab {
+  background: #0077ff;
+  color: white;
+  border-color: #0077ff;
+}
+
+/* Itinerary text area */
+textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: vertical;
+}
+
+/* Form submit button */
+.trip-form button[type="submit"] {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-size: 16px;
+}
+
+.trip-form button[type="submit"]:hover {
+  background: #218838;
+}
+
+/* Headings and spacing */
+.trip-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.trip-form h3 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}

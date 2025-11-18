@@ -5,7 +5,7 @@ const App = ()=>{
   const navigate = useNavigate();
   const handleRegisterLogin = async ()=>{
     console.log('sending req to login check')
-    const loggedIn = await fetch('https://rkl6rjdf-3000.inc1.devtunnels.ms//login-check',{
+    const loggedIn = await fetch('https://rkl6rjdf-3000.inc1.devtunnels.ms/login-check',{
       method:'GET',
       headers:{
         'Content-Type':'application/json'

@@ -59,6 +59,14 @@ const tripSchema = new mongoose.Schema({
     }
   ],
 
+  hotels: [
+    {
+      name: String,
+      link: String
+    }
+  ],
+  
+
   included: [String],
 
   excluded: [String],

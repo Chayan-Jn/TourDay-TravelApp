@@ -1,0 +1,12 @@
+POST /register – Register a new user.
+POST /login – Log in an existing user.
+GET /admin/admin-check – Verify if logged-in user is an admin.
+GET /login-check – Check if user is logged in.
+POST /add-trips – Admin adds a new trip.
+POST /book-trip – User books a trip.
+POST /get-trip-data – Get details of a specific trip.
+GET /get-all-trips – Get all available trips.
+GET /get-user-bookings – Get trips booked by the logged-in user.
+
+Note: In all frontend fetch requests, set credentials: 'include' 
+because authentication uses cookies.

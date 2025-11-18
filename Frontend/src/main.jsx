@@ -6,6 +6,8 @@ import Register from './Components/Register.jsx'
 import Login from './Components/Login.jsx'
 import Home from './Components/Home.jsx'
 import TripForm from './Components/TripForm.jsx'
+import Trips from './Components/Trips.jsx'
+import TripDetails from './Components/TripDetails.jsx'
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
   {
     path:"/admin/trip-form",
     element:<TripForm/>
+  },
+  {
+    path:"/trips",
+    element:<Trips/>
+  },
+  {
+    path:"/trip/:id",
+    element:<TripDetails/>
   }
 ])
 

@@ -16,12 +16,14 @@ export default function TripForm() {
     included: [],
     excluded: [],
     images: [],
-    itinerary: []
+    itinerary: [],
+    hotels: []
   })
 
   const [includedInput, setIncludedInput] = useState('')
   const [excludedInput, setExcludedInput] = useState('')
   const [imageInput, setImageInput] = useState('')
+  const [hotelInput, setHotelInput] = useState({ name: '', link: '' })
   const [isAdmin, setIsAdmin] = useState(null)
   const [error, setError] = useState('')
   const [activeDay, setActiveDay] = useState(1)
@@ -81,6 +83,15 @@ export default function TripForm() {
     }))
   }
 
+  const addHotel = () => {
+    if (!hotelInput.name.trim()) return
+    setTrip(prev => ({
+      ...prev,
+      hotels: [...prev.hotels, { name: hotelInput.name.trim(), link: hotelInput.link.trim() }]
+    }))
+    setHotelInput({ name: '', link: '' })
+  }
+
   const handleSubmit = async e => {
     e.preventDefault()
     const res = await fetch('https://rkl6rjdf-3000.inc1.devtunnels.ms/add-trips', {
@@ -105,11 +116,13 @@ export default function TripForm() {
       included: [],
       excluded: [],
       images: [],
-      itinerary: []
+      itinerary: [],
+      hotels: []
     })
     setIncludedInput('')
     setExcludedInput('')
     setImageInput('')
+    setHotelInput({ name: '', link: '' })
     setActiveDay(1)
   }
 
@@ -138,15 +151,16 @@ export default function TripForm() {
       <label>Price Per Person</label>
       <input type="number" name="pricePerPerson" value={trip.pricePerPerson} onChange={handleChange} required />
 
-      <label>Max Group Size</label>
+      <label>Total Seats</label>
       <input type="number" name="maxGroupSize" value={trip.maxGroupSize} onChange={handleChange} required />
 
       <label>Available Seats</label>
       <input type="number" name="availableSeats" value={trip.availableSeats} onChange={handleChange} required />
 
       <label>Category</label>
-      <input name="category" value={trip.category} onChange={handleChange} placeholder="Adventure, Beach..." />
+      <input name="category" value={trip.category} onChange={handleChange} placeholder="Adventure, Beach..." required />
 
+      {/* Included Section */}
       <div className="list-section">
         <label>Included</label>
         <div className="list-input">
@@ -163,6 +177,7 @@ export default function TripForm() {
         </ul>
       </div>
 
+      {/* Excluded Section */}
       <div className="list-section">
         <label>Excluded</label>
         <div className="list-input">
@@ -179,6 +194,7 @@ export default function TripForm() {
         </ul>
       </div>
 
+      {/* Images Section */}
       <div className="list-section">
         <label>Images</label>
         <div className="list-input">
@@ -195,10 +211,41 @@ export default function TripForm() {
         </ul>
       </div>
 
-      <h3>Guide Details</h3>
-      <input name="name" value={trip.guide.name} onChange={handleGuideChange} placeholder="Guide Name" />
-      <input name="contact" value={trip.guide.contact} onChange={handleGuideChange} placeholder="Guide Contact" />
+      {/* Hotels Section */}
+      <div className="list-section">
+        <label>Hotels</label>
+        <div className="hotel-inputs">
+          <input
+            value={hotelInput.name}
+            onChange={e => setHotelInput(prev => ({ ...prev, name: e.target.value }))}
+            placeholder="Hotel name"
+          />
+          <input
+            value={hotelInput.link}
+            onChange={e => setHotelInput(prev => ({ ...prev, link: e.target.value }))}
+            placeholder="Hotel link"
+          />
+          <button type="button" onClick={addHotel}>Add</button>
+        </div>
+        <ul>
+          {trip.hotels.map((hotel, i) => (
+            <li key={i}>
+              {hotel.link ? (
+                <a href={hotel.link} target="_blank" rel="noreferrer">{hotel.name}</a>
+              ) : (
+                hotel.name
+              )}
+              <button type="button" onClick={() => removeFromList('hotels', i)}>×</button>
+            </li>
+          ))}
+        </ul>
+      </div>
 
+      <h3>Guide Details</h3>
+      <input name="name" value={trip.guide.name} onChange={handleGuideChange} placeholder="Guide Name" required />
+      <input name="contact" value={trip.guide.contact} onChange={handleGuideChange} placeholder="Guide Contact" required/>
+
+      {/* Itinerary Section */}
       <div className="list-section">
         <h3>Itinerary</h3>
         <div className="itinerary-tabs">
@@ -221,6 +268,7 @@ export default function TripForm() {
               value={dayObj.activities.join('\n')}
               onChange={e => handleActivityChange(dayObj.day, e.target.value)}
               placeholder="Enter activities, one per line"
+              
             />
           )
         )}
