@@ -6,7 +6,7 @@ const bookTrip = async (req, res) => {
 
     try {
         const userId = req.userInfo.id;
-        const { source, seatsBooked, dateBooked, tripId } = req.body; 
+        const { source, seatsBooked, dateBooked, tripId,phone } = req.body; 
 
         if (!mongoose.Types.ObjectId.isValid(tripId)) {
             return res.status(400).json({
@@ -35,7 +35,8 @@ const bookTrip = async (req, res) => {
             trip:tripId,
             seatsBooked,
             source,
-            dateBooked
+            dateBooked,
+            phone
         });
 
         return res.status(201).json({

@@ -8,6 +8,7 @@ import Home from './Components/Home.jsx'
 import TripForm from './Components/TripForm.jsx'
 import Trips from './Components/Trips.jsx'
 import TripDetails from './Components/TripDetails.jsx'
+import Booking from './Components/Booking.jsx'
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path:"/trip/:id",
     element:<TripDetails/>
+  },
+  {
+    path:'/booking/:id',
+    element:<Booking/>
   }
 ])
 

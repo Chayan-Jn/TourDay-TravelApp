@@ -20,6 +20,10 @@ const Schema = new mongoose.Schema({
         type:Date,
         required:true
     },
+    phone:{
+        type:Number,
+        required:true
+    },
     source: { 
         type: String, 
         enum: ['Delhi', 'Noida', 'Gurgaon', 'Faridabad'],

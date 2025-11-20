@@ -88,9 +88,9 @@ async function login(req,res) {
         const isProd = process.env.NODE_ENV === 'production';
         res.cookie('token',token,{
             httpOnly:true,
-            secure:false,
-            sameSite: 'lax',
-            maxAge:3600000 //1h
+            secure:true,
+            sameSite: 'None',
+            maxAge:3600000*24 // 24h expiry
         });
         return res.status(200).json({
             success:true,

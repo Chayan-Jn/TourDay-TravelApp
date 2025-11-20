@@ -1,42 +1,179 @@
+body {
+  /* background: linear-gradient(135deg, #fceabb, #f8b500); */
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.loading, .error {
+  text-align: center;
+  margin: 50px 0;
+  font-size: 1.2rem;
+}
+
+.trip-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: linear-gradient(135deg,burlywood, lightpink);
+  padding:1.2rem;
+}
+
+.trip-banner {
+  position: relative;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  margin: 20px;
+  overflow: hidden;
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.banner-overlay h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+}
+
+.banner-overlay p {
+  font-size: 1.2rem;
+  margin-top: 5px;
+}
+
 .trip-details {
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 12px;
-    border: 1px solid #ddd;
-  }
-  
-  .trip-details h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .trip-details h3 {
-    margin-top: 20px;
-    color: #333;
-  }
-  
-  .trip-details p, .trip-details li {
-    color: #555;
-  }
-  
-  .trip-details ul {
-    list-style: disc;
-    margin-left: 20px;
-  }
-  
-  .trip-images {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
-  }
-  
-  .trip-images img {
-    width: 180px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  margin: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.trip-info-cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.info-card {
+  background: linear-gradient(135deg, #65f6d9, #fda085);
+  padding: 15px;
+  border-radius: 10px;
+  flex: 1;
+  min-width: 150px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.info-card h3 {
+  margin: 0 0 8px 0;
+  color: black;
+}
+
+.includes-excludes {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.includes-excludes > div {
+  flex: 1;
+  min-width: 200px;
+}
+
+.trip-details section h3 {
+  color: #ff5722;
+  margin-top: 20px;
+  border-bottom: 2px solid #ffcc80;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.trip-details p, .trip-details li {
+  color: #555;
+  line-height: 1.5;
+}
+
+.hotels-list a {
+  color: #ff5722;
+  text-decoration: none;
+}
+
+.hotels-list a:hover {
+  text-decoration: underline;
+}
+
+.itinerary-day {
+  margin-bottom: 15px;
+}
+
+.itinerary-day h4 {
+  color: #1976d2;
+  margin-bottom: 5px;
+}
+
+.trip-images {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+.trip-images img {
+  width: 250px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.trip-images img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Scrollbar style */
+.trip-images::-webkit-scrollbar {
+  height: 8px;
+}
+
+.trip-images::-webkit-scrollbar-thumb {
+  background: #ff5722;
+  border-radius: 4px;
+}
+
+
+.book-div{
+  min-height: min(10vh,150px);
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-div button{
+  all:unset;
+  color:wheat;
+  font-weight: bold;
+  padding: 2% 3%;
+  border-radius: 15px;
+  background-color: crimson;
+}
+.book-div button:hover{
+  opacity: 0.7;
+  cursor: pointer;
+}
