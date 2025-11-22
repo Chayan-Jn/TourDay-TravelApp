@@ -16,7 +16,7 @@ const bookTrip = async (req, res) => {
         }
           
 
-        // availableSeats: {$gte:seatsBooked} only apply the change if this is true
+        // availableSeats-> {$gte:seatsBooked} only apply the change if this is true
         const trip = await Trip.findOneAndUpdate(
             { _id: tripId, availableSeats: { $gte: seatsBooked } },  
             { $inc: { availableSeats: -seatsBooked } },

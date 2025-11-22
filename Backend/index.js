@@ -35,10 +35,4 @@ app.listen(3000, () => {
     console.log("Server listening on port 3k")
 })
 
-const Trip = require('./model/Trip');
-const f = async (req,res)=>{
-    const data = await Trip.find({}, { _id: 1, images: 1 ,title:1});
-    res.status(200).json(data);
-}
-app.get('/data',f)
 
