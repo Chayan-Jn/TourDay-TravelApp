@@ -28,6 +28,10 @@ const Schema = new mongoose.Schema({
         type: String, 
         enum: ['Delhi', 'Noida', 'Gurgaon', 'Faridabad'],
         required: true
+    },
+    paymentId:{
+        type:String,
+        required:true
     }
 
 },{timestamps:true})

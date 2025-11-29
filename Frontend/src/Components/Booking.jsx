@@ -5,8 +5,8 @@ import '../css/Booking.css';
 const Booking = () => {
   const { tripId } = useParams();
 
-  const location = useLocation();
-  const trip = location.state?.trip;
+  // const location = useLocation();
+  const [trip,setTrip] = useState(null);
 
   const [userData, setUserData] = useState('');
   const [phone, setPhone] = useState('');
@@ -32,6 +32,24 @@ const Booking = () => {
     fetchUser();
   }, []);
 
+  useEffect( ()=>{
+
+    const fetchTripDetail = async ()=>{
+        const tripRes = await fetch(`https://rkl6rjdf-3000.inc1.devtunnels.ms/get-trip-data`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tripId:tripId }),
+          credentials: 'include',
+        });
+        const tripData = await tripRes.json();
+        if (tripData.success) {
+            setTrip(tripData.trip);
+        }
+    }
+    fetchTripDetail()
+
+  },[])
+
   if (!trip) return <p className="error">Trip data not found!</p>;
 
   const totalPrice = seatsBooked ? seatsBooked * trip.pricePerPerson : 0;
@@ -47,30 +65,84 @@ const Booking = () => {
     }
 
     try {
-      console.log('trip id ',tripId)
-      const res = await fetch('https://rkl6rjdf-3000.inc1.devtunnels.ms/book-trip', {
+
+      // #1 : Create Razorpay order
+      const orderRes = await fetch('https://rkl6rjdf-3000.inc1.devtunnels.ms/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify({
-          user:userData._id,
-          tripId:trip._id,
+          tripId: trip._id,
           seatsBooked,
-          source,
-          dateBooked: new Date(),
           phone,
         }),
       });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Booking failed');
-      alert(`Booking successful! Total: ₹${totalPrice}`);
       
-      setPhone('');
-      setSeatsBooked('');
-      setSource('Delhi');
 
-    } catch (err) {
+      const orderData = await orderRes.json();
+      if (!orderData.success) throw new Error(orderData.message || 'Order creation failed');
+
+      const { key, order, amount } = orderData;
+
+      // Step 2: Open Razorpay checkout
+      const options = {
+        key,
+        amount: amount * 100,
+        currency: 'INR',
+        name: 'Trip Booking',
+        description: `Booking for ${trip.title}`,
+        order_id: order.id,
+        handler: async function (response) {
+          // Step 3: Verify payment & book trip
+          const verifyRes = await fetch('https://rkl6rjdf-3000.inc1.devtunnels.ms/book-trip', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({
+              user: userData._id,
+              tripId: trip._id,
+              seatsBooked,
+              source,
+              dateBooked: new Date(),
+              phone,
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+            }),
+          });
+          const data = await verifyRes.json();
+          if (!data.success) throw new Error(data.message || 'Booking failed');
+          if (data.success) {
+            alert(`Booking successful! Total: ₹${totalPrice}`);
+              // Refetch updated trip
+              const tripRes = await fetch(`https://rkl6rjdf-3000.inc1.devtunnels.ms/get-trip-data`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ tripId: trip._id }),
+                  credentials: 'include',
+              });
+              const tripData = await tripRes.json();
+              if (tripData.success) {
+                  setTrip(tripData.trip);
+              }
+          
+              setPhone('');
+              setSeatsBooked('');
+              setSource('Delhi');
+          }
+        },
+        prefill: {
+          name: userData.username,
+          contact: phone,
+        },
+        theme: { color: '#3399cc' },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } 
+    catch (err) {
       alert('Booking failed: ' + err.message);
     }
   };

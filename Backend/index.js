@@ -3,6 +3,7 @@ const connectToDb = require('./config/db')
 const cookieParser = require('cookie-parser');
 const cors = require('cors')
 
+
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes')
 const loginCheckRoute = require('./routes/loginCheckRoute')
